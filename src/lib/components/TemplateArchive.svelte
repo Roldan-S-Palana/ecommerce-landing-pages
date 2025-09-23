@@ -107,7 +107,7 @@
         <div class="text-sm text-theme-muted">Forever</div>
       </div>
       <div class="px-6 py-4 rounded-2xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">Svelte</div>
+        <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">HTML + Tailwind</div>
         <div class="text-sm text-theme-muted">Powered</div>
       </div>
     </div>
