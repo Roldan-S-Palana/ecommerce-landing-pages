@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Ecommerce Landing Pages</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="light dark" />
+		<script>
+			// Enhanced theme initialization script
+			(function() {
+				try {
+					const stored = localStorage.getItem('theme');
+					const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+					const isDark = stored === 'dark' || (!stored && prefersDark);
+					const theme = isDark ? 'dark' : 'light';
+					
+					const root = document.documentElement;
+					
+					// Apply theme class and data attribute
+					root.classList.add(theme);
+					root.setAttribute('data-theme', theme);
+					
+					// Apply CSS custom properties immediately
+					if (isDark) {
+						root.style.setProperty('--bg-primary', '#0f0f23');
+						root.style.setProperty('--bg-secondary', '#1a1a2e');
+						root.style.setProperty('--bg-tertiary', '#16213e');
+						root.style.setProperty('--text-primary', '#ffffff');
+						root.style.setProperty('--text-secondary', '#e2e8f0');
+						root.style.setProperty('--text-muted', '#94a3b8');
+						root.style.setProperty('--border-color', '#334155');
+						root.style.setProperty('--accent-primary', '#60a5fa');
+						root.style.setProperty('--accent-secondary', '#34d399');
+						root.style.setProperty('--card-bg', '#1e293b');
+						root.style.setProperty('--header-bg', 'rgba(15, 15, 35, 0.8)');
+						root.style.setProperty('--shadow', '0 25px 50px -12px rgba(0, 0, 0, 0.5)');
+					} else {
+						root.style.setProperty('--bg-primary', '#ffffff');
+						root.style.setProperty('--bg-secondary', '#f8fafc');
+						root.style.setProperty('--bg-tertiary', '#f1f5f9');
+						root.style.setProperty('--text-primary', '#0f172a');
+						root.style.setProperty('--text-secondary', '#334155');
+						root.style.setProperty('--text-muted', '#64748b');
+						root.style.setProperty('--border-color', '#e2e8f0');
+						root.style.setProperty('--accent-primary', '#3b82f6');
+						root.style.setProperty('--accent-secondary', '#059669');
+						root.style.setProperty('--card-bg', '#ffffff');
+						root.style.setProperty('--header-bg', 'rgba(255, 255, 255, 0.8)');
+						root.style.setProperty('--shadow', '0 25px 50px -12px rgba(0, 0, 0, 0.25)');
+					}
+					
+					// Apply to body when it's available
+					document.addEventListener('DOMContentLoaded', function() {
+						document.body.classList.add(theme);
+					});
+				} catch(e) {
+					console.warn('Theme initialization failed:', e);
+				}
+			})();
+		</script>
+		
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/entry/start.xS-IiVeb.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/gfdpUTP2.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/5RbUya7e.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/C1Nw9cv8.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/CDaVJHSR.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/entry/app.Bwgsp310.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/DsnmJJEf.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/DePu5cB7.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/V30dVgK0.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/CZ211jLq.js">
+		<link rel="modulepreload" href="/ecommerce-landing-pages/_app/immutable/chunks/CqhVfH5K.js">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div class="sveltekit-body">
+			<script>
+				{
+					__sveltekit_5j9hju = {
+						base: "/ecommerce-landing-pages",
+						assets: "/ecommerce-landing-pages"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/ecommerce-landing-pages/_app/immutable/entry/start.xS-IiVeb.js"),
+						import("/ecommerce-landing-pages/_app/immutable/entry/app.Bwgsp310.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
