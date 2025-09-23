@@ -1,5 +1,6 @@
 <script lang="ts">
   import { products, type Product } from '$lib/data/products';
+  import { base } from '$app/paths';
 
   // Extended product interface with download and support info
   interface TemplateProduct extends Product {
@@ -14,7 +15,7 @@
   // Mock extended products data (in real app, this would come from API)
   const templateProducts: TemplateProduct[] = products.map(product => ({
     ...product,
-    downloadUrl: `/${product.slug}-source.zip`,
+    downloadUrl: `${base}/${product.slug}-source.zip`,
     previewUrl: `/landing-pages/${product.slug}`,
     supportOptions: {
       patreon: 'https://patreon.com/yourusername',

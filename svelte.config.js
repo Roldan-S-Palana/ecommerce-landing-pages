@@ -3,13 +3,12 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 const config = {
   preprocess: vitePreprocess(),
-
   kit: {
     adapter: adapter({
-      fallback: 'index.html'
+      fallback: 'index.html' // ensures SPA routing works
     }),
     paths: {
-      base: process.env.NODE_ENV === 'production' ? '/ecommerce-landing-pages' : ''
+      base: '/ecommerce-landing-pages', // MUST match your repo name
     }
   }
 };
