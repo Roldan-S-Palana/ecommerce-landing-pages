@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
   import { products } from '$lib/data/products';
 
-  let slug: string;
+  let slug: string | undefined;
   let product: any;
 
   $: {

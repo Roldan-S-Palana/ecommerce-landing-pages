@@ -3,7 +3,7 @@
   import Landing1 from '$lib/landing-pages/Landing1.svelte';
   import Landing2 from '$lib/landing-pages/Landing2.svelte';
 
-  let slug: string;
+  let slug: string | undefined;
   let component: any;
 
   $: {
