@@ -1,18 +1,15 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-const dev = process.argv.includes('dev');
-
 const config = {
   preprocess: vitePreprocess(),
 
   kit: {
     adapter: adapter({
-      fallback: 'index.html' // needed for SPA routing
+      fallback: 'index.html'
     }),
     paths: {
-      // Replace 'your-repo-name' with your GitHub repo
-      base: dev ? '' : '/ecommerce-landing-pages'
+      base: process.env.NODE_ENV === 'production' ? '/ecommerce-landing-pages' : ''
     }
   }
 };
