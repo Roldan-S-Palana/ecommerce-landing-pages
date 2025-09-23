@@ -23,49 +23,30 @@
   }));
 
   // Download template function that works in both dev and production
-  async function downloadTemplate(template: TemplateProduct) {
-    try {
-      console.log('Starting download for template:', template.slug);
+  function downloadTemplate(template: TemplateProduct) {
+    console.log('Starting download for template:', template.slug);
 
-      // Show loading message
-      const loadingMsg = '🚀 Downloading ' + template.slug + ' template...\n\n📁 This will download the complete source code package to your computer.';
-      alert(loadingMsg);
+    // Show loading message
+    const loadingMsg = '🚀 Downloading ' + template.slug + ' template...\n\n📁 This will download the complete template ZIP file to your computer.';
+    alert(loadingMsg);
 
-      const zipUrl = template.downloadUrl;
+    // Create download link to the ZIP file
+    const link = document.createElement('a');
+    link.href = template.downloadUrl;
+    link.download = `${template.slug}-source.zip`;
+    link.style.display = 'none';
 
-      // Fetch the file
-      const response = await fetch(zipUrl);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch file: ${response.status} ${response.statusText}`);
-      }
+    // Add to DOM and click
+    document.body.appendChild(link);
+    link.click();
 
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
+    // Clean up
+    document.body.removeChild(link);
 
-      // Create download link
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${template.slug}-source.zip`;
-      link.style.display = 'none';
-
-      // Add to DOM and click
-      document.body.appendChild(link);
-      link.click();
-
-      // Clean up
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      // Show success message
-      const successMsg = '✅ SUCCESS: ' + template.slug + ' template downloaded!\n\n📂 File saved to your downloads folder:\n• ' + template.slug + '-source.zip\n\n🎯 Next steps:\n1. Extract the ZIP file\n2. Run "npm install && npm run dev"\n3. Customize as needed!';
-      alert(successMsg);
-      console.log('Template downloaded successfully:', template.slug);
-
-    } catch (error) {
-      console.error('Download failed:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      alert('❌ Download failed. Please check your internet connection and try again.\n\nError: ' + errorMessage);
-    }
+    // Show success message
+    const successMsg = '✅ SUCCESS: ' + template.slug + ' template downloaded!\n\n📂 File saved to your downloads folder:\n• ' + template.slug + '-source.zip\n\n🎯 Next steps:\n1. Extract the ZIP file\n2. Open index.html in your browser\n3. Customize as needed!';
+    alert(successMsg);
+    console.log('Template downloaded successfully:', template.slug);
   }
 
 </script>
@@ -99,24 +80,20 @@
     </p>
 
     <!-- Usage Instructions -->
-    <div class="max-w-4xl mx-auto mb-12 p-6 rounded-2xl bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/50 backdrop-blur-sm">
-      <div class="flex items-start gap-4">
-        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500/20 dark:bg-blue-400/20 flex items-center justify-center">
-          <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-            <path d="M12 17h.01"/>
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-lg font-bold text-theme-primary mb-2">How to Use Downloaded Templates</h3>
-          <div class="text-theme-secondary space-y-2 text-sm">
-            <p><strong>For Local Development:</strong> Extract the ZIP file and run <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">npm install && npm run dev</code></p>
-            <p><strong>For Production:</strong> Use <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">npm run build</code> then deploy the <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">dist/</code> folder</p>
-            <p><strong>Static Version:</strong> Open <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">index.html</code> directly in your browser</p>
-            <p class="text-xs text-theme-muted mt-3">📁 Each download includes source code, assets, and setup instructions</p>
-          </div>
-        </div>
+    <div class="max-w-4xl mx-auto mb-12 p-6 rounded-2xl bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/50 backdrop-blur-sm text-center">
+      <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-500/20 dark:bg-blue-400/20 mb-4">
+        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <path d="M12 17h.01"/>
+        </svg>
+      </div>
+      <h3 class="text-lg font-bold text-theme-primary mb-4">How to Use Downloaded Templates</h3>
+      <div class="text-theme-secondary space-y-2 text-sm">
+        <p><strong>For Local Development:</strong> Extract the ZIP file and run <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">npm install && npm run dev</code></p>
+        <p><strong>For Production:</strong> Use <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">npm run build</code> then deploy the <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">dist/</code> folder</p>
+        <p><strong>Static Version:</strong> Open <code class="bg-theme-primary/20 px-2 py-1 rounded text-xs">index.html</code> directly in your browser</p>
+        <p class="text-xs text-theme-muted mt-3">📁 Each download includes source code, assets, and setup instructions</p>
       </div>
     </div>
     <!-- Stats Cards -->
@@ -204,9 +181,9 @@
               </div>
 
               <div class="text-center">
-                <p class="text-xs text-theme-muted mb-2">💡 Complete Svelte + Tailwind source code package</p>
+                <p class="text-xs text-theme-muted mb-2">💡 Complete template ZIP with source code</p>
                 <a
-                  href="/templates/{template.slug}-source/README.md"
+                  href="/templates/{template.slug}/README.md"
                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-theme-secondary hover:bg-theme-tertiary text-theme-secondary hover:text-theme-primary text-xs font-medium transition-all duration-200"
                   target="_blank"
                 >
