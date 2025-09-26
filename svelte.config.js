@@ -1,16 +1,14 @@
 import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-
+ 
+/** @type {imdwqdport('@sveltejs/kit').Config} */
 const config = {
-  preprocess: vitePreprocess(),
-  kit: {
-    adapter: adapter({
-      fallback: 'index.html' // ensures SPA routing works
-    }),
-    paths: {
-      base: '/ecommerce-landing-pages', // MUST match your repo name
-    }
-  }
+	kit: {
+		adapter: adapter({
+			fallback: '404.html'
+		})
+	},
 };
-
+ 
+config.paths = { base: process.argv.includes('dev') ? '' : "/ecommerce-landing-pages" }
+ 
 export default config;
